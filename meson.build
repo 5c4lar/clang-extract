@@ -42,7 +42,9 @@ compiler_name = cpp.get_id()
 assert(compiler_name == 'clang', compiler_name + ' found but only clang is supported')
 
 ########## Dependency: clang libraries ################
-llvm_libdir = dependency('llvm', version : '>=16').get_variable(cmake : 'LLVM_LIBRARY_DIR', configtool: 'libdir')
+llvm_dep = dependency('llvm', version : '>=16')
+llvm_libdir = llvm_dep.get_variable(cmake : 'LLVM_LIBRARY_DIR', configtool: 'libdir')
+llvm_incdir = llvm_dep.get_variable(cmake : 'LLVM_INCLUDE_DIR', configtool: 'includedir')
 
 clang_dep = []
 clang_dep += cpp.find_library('clang-cpp', dirs : llvm_libdir)
@@ -54,7 +56,7 @@ find_program('gcc', version : '>=7.5.0')
 
 subdir('libcextract')
 
-incdir = include_directories('libcextract')
+incdir = include_directories('libcextract', llvm_incdir)
 
 executable('inline', 'Inline.cpp',
   include_directories : incdir,

@@ -36,4 +36,4 @@ libcextract_sources = [
   'HeaderGenerate.cpp'
 ]
 
-libcextract_static = static_library('cextract', libcextract_sources)
+libcextract_static = static_library('cextract', libcextract_sources, include_directories: llvm_incdir)
