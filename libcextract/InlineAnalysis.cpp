@@ -19,7 +19,6 @@
 #include <iostream>
 #include <cxxabi.h>
 #include <stdlib.h>
-#include <cxxabi.h>
 #include <stdexcept>
 
 InlineAnalysis::InlineAnalysis(const char *elf_path, const char *ipaclones_path,
