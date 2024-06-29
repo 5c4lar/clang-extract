@@ -47,7 +47,7 @@ llvm_libdir = llvm_dep.get_variable(cmake : 'LLVM_LIBRARY_DIR', configtool: 'lib
 llvm_incdir = llvm_dep.get_variable(cmake : 'LLVM_INCLUDE_DIR', configtool: 'includedir')
 
 clang_dep = []
-clang_dep += cpp.find_library('clang-cpp', dirs : llvm_libdir)
+clang_dep += cpp.find_library('clang-cpp')
 clang_dep += cpp.find_library('LLVM', dirs : llvm_libdir)
 ############################# #########################
 elf_dep = dependency('libelf') # libelf
