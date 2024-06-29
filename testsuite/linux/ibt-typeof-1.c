@@ -9,6 +9,7 @@ int f(void)
 	u32 lcrc = 0;
 	void *addr = 0;
 	unsigned int len = 0;
+  typeof(crc32c) *ptr = (void *) 0UL;
 
 	(void)crc32c(lcrc, addr, len);
 	return 0;
@@ -16,4 +17,5 @@ int f(void)
 
 /* { dg-final { scan-tree-dump "u32 klpe_crc32c|u32 \(klpe_crc32c\)" } } */
 /* { dg-final { scan-tree-dump "KLP_RELOC_SYMBOL\(libcrc32c, libcrc32c, crc32c\)" } } */
+/* { dg-final { scan-tree-dump "typeof\(klpe_crc32c\)" } } */
 /* { dg-final { scan-tree-dump-not "\(\*klpe_crc32c\)" } } */
